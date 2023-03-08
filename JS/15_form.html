@@ -126,17 +126,14 @@
                 }
                 // 개별 동의를 클릭하면 모든 개별 동의에 체크 유무를 확인해서
                 // 모두 체크되었으면 전체 동의를 체크하고, 아니면 전체 동의를 해제한다.
-                var c = 0;
                 for(let i = 0; i < chkOneList.length; i++) {
                     chkOneList[i].onclick = function() {
-                    
-                    if(chkOneList[i].checked == true) {
-                        c++;
+                        let chkCount = 0;
+                    for(let j = 0; j < chkOneList.length; j++) {
+                        chkCount += chkOneList[j].checked
                     }
-                    console.log(c);
-                    if(c % chkOneList.length == 0) {
-                        chkAll.checked = chkOneList[i].checked;
-                    }
+                    chkAll.checked = (chkOneList.length == chkCount);
+                    console.log(chkCount);
                 }
                     
                 }
