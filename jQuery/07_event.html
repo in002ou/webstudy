@@ -20,7 +20,7 @@
                     (1) 표준 이벤트 방식을 사용하므로 하나의 이벤트 타입에 여러 개의 이벤트 리스너를 등록할 수 있다.
                     (2) 동적으로 생성된 요소(JavaScript 또는 jQuery로 만든 요소)에도 이벤트를 등록할 수 있다.
                     (3) 이벤트 등록 방식
-                        ① 정적 요소에 등록할 때
+                        ① 정적/동적 요소에 등록할 때
                             $(이벤트대상).on('이벤트타입', 이벤트리스너)
                         ② 동적 요소에 등록할 때
                             $(부모).on('이벤트타입', 이벤트대상, 이벤트리스너)
@@ -47,7 +47,6 @@
                 return;                         // 이벤트 리스너를 종료
             }
                 alert($(this).text() + '로 이동합니다.');
-            
         });
     </script>
     <div id="box"></div>
@@ -56,7 +55,11 @@
         $('#box').append('<button id="btn">버튼</button>');
         // 동적 요소에 이벤트 등록
         $('#btn').on('click', function(event){
-            alert('클릭');
+            $(this).after('<p>하하하</p>');
+        });
+        // 이벤트로 생성한 동적 요소에 이벤트 등록
+        $('#box').on('click', 'p', function(){
+            $(this).css('background-color', 'yellow');
         });
     </script>
 </body>
