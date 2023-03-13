@@ -11,7 +11,7 @@
     <div id="box1">BOX1</div>
     <script>
         // 1. text() == textContent
-        console.log($('#box1').text());
+        console.log($('#box1').text()); // 이름이 같은데 괄호 안에 전달되는 인수가 다르다 
         $('#box1').text('박스1');
     </script>
     <div id="box2">
@@ -32,7 +32,7 @@
             'text-align': 'center'
         });
     </script>
-    <div id="box4" class="box4">
+    <div>
         <img id="img">
     </div>
     <script>
@@ -93,6 +93,78 @@
         $('#terminator').remove();
         // 2. 모든 하위 요소 제거하기
         $('#movies').empty();   // #movies 자체는 삭제되지 않고 남는다.
+    </script>
+    <div>
+        <form id="frm">
+            <div>
+                <input type="text" placeholder="아이디">
+            </div>
+            <div>
+                <input type="password" placeholder="비밀번호">
+            </div>
+            <div>
+                <input type="radio" name="gender" value="male" id="male">
+                <label for="male">남자</label>
+                <input type="radio" name="gender" value="female" id="female">
+                <label for="female">여자</label>
+                <input type="radio" name="gender" value="none" id="none" checked>
+                <label for="none">선택안함</label>
+            </div>
+            <div>
+                <select>
+                    <option value="서울">서울</option>
+                    <option value="경기" selected>경기</option>
+                    <option value="인천">인천</option>
+                </select>
+            </div>
+            <div>
+                <textarea>Hello World</textarea>
+            </div>
+        </form>
+    </div>
+    <script>
+        // input type=text
+        $('#frm :text').css('background-color', 'silver');
+        $('#frm :text').prop('value', 'admin');
+        $('#frm :text').val('master');                  // 입력 값을 조작하는 val 메소드
+        // input type=password
+        $('#frm :password').val('1234');
+        // input type=radio
+        console.log($('#frm :radio').val());            // 첫 번째 radio의 value 실무에서 첫 번째 값은 관심이 옶다
+        console.log($('#frm :radio:checked').val());    // checked된 radio의 value
+        // select
+        console.log($('#frm select').val());            // 선택된 option의 value
+        // textarea
+        console.log($('#frm textarea').text());         // textarea는 val를 사용0하지 아니하고 text()로 조작
+        $('#frm textarea').text('Hello jQuery');
+    </script>
+    <style>
+        .big-text {
+            font-size: 2em;     /* 1em = 16px 부모의 크기 기준 따라서, 부모 크기의 두 배 = 2em */
+        }
+        .red-text {
+            color: red;
+        }
+    </style>
+    <div id="box4" class="invisible">
+        Hello World
+    </div>
+    <script>
+        // class 속성 추가
+        $('#box4').addClass('big-text').addClass('red-text');   // 메소드 체이닝
+        $('#box4').addClass('big-text red-text');   // 공백으로 class 구분
+        // class 속성 제거
+        $('#box4').removeClass('red-text').removeClass('big-text');
+        $('#box4').removeClass('red-text big-text');
+        // class 속성 토글(추가와 제거가 번갈아가면서 적용)        
+        $('#box4').toggleClass('big-text').toggleClass('big-text');
+        $('#box4').toggleClass('red-text').toggleClass('red-text');
+        // class 속성 확인
+        if($('#box4').hasClass('invisible')){
+            // $('#box4').css('opacity', '0');         // 투명도 0으로 설정
+            // $('#box4').css('visibility', 'hidden');
+            // $('#box4').css('display', 'none');
+        }
     </script>
 </body>
 </html>
